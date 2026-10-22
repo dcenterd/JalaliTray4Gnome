@@ -4,7 +4,7 @@
 #   ./install.sh uninstall  remove it (the Vazirmatn font is left in place)
 set -euo pipefail
 
-UUID="jalali-calendar@zareh"
+UUID="jalali-calendar@jalalitray4gnome"
 SRC="$(cd "$(dirname "$0")" && pwd)/$UUID"
 DEST="${XDG_DATA_HOME:-$HOME/.local/share}/gnome-shell/extensions/$UUID"
 FONTS="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"
@@ -17,6 +17,10 @@ if [[ "${1:-}" == "uninstall" ]]; then
 fi
 
 command -v glib-compile-schemas >/dev/null || { echo "glib-compile-schemas is missing (package libglib2.0-bin)"; exit 1; }
+
+# drop the pre-rename install
+gnome-extensions disable jalali-calendar@zareh 2>/dev/null || true
+rm -rf "${XDG_DATA_HOME:-$HOME/.local/share}/gnome-shell/extensions/jalali-calendar@zareh"
 
 echo "Installing to $DEST"
 rm -rf "$DEST"

@@ -1,5 +1,5 @@
 {
-  "uuid": "jalali-calendar@zareh",
+  "uuid": "jalali-calendar@jalalitray4gnome",
   "name": "JalaliTray4Gnome",
   "description": "تقویم شمسی در نوار بالای گنوم: تاریخ امروز، تقویم ماهانه، تاریخ میلادی و قمری، رویدادها و تعطیلات از time.ir و مبدل تاریخ.\n\nJalali (Persian) calendar in the GNOME top bar, with Gregorian and Hijri dates, time.ir events and holidays, and a date converter. JalaliTray4Gnome is a GNOME port of JalaliTray by Avestura (https://github.com/avestura/JalaliTray).",
   "shell-version": ["45", "46", "47", "48"],

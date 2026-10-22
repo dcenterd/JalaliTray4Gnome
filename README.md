@@ -24,8 +24,8 @@ Requires GNOME Shell 45–48 (Ubuntu 24.04 ships 46).
 ```bash
 ./install.sh
 # Wayland: log out and back in. X11: Alt+F2, r, Enter.
-gnome-extensions enable jalali-calendar@zareh
-gnome-extensions prefs jalali-calendar@zareh   # settings
+gnome-extensions enable jalali-calendar@jalalitray4gnome
+gnome-extensions prefs jalali-calendar@jalalitray4gnome   # settings
 ```
 
 It can run alongside `shamsi-calendar@gnome.scr.ir`. Disable that one if you want only this one.
