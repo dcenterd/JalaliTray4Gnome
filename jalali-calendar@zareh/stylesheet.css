@@ -1,0 +1,90 @@
+/* JalaliTray4Gnome: works on GNOME's dark and light shell styles. */
+
+.jc-panel-label {
+  font-family: "Vazirmatn", "Vazir", sans-serif;
+  font-weight: bold;
+}
+.jc-panel-holiday { color: #ff7b72; }
+
+.jc-menu { min-width: 270px; }
+.jc-item { padding: 0 6px; }
+.jc-item:hover, .jc-item:focus, .jc-item:active { background-color: transparent; }
+
+.jc-root {
+  font-family: "Vazirmatn", "Vazir", sans-serif;
+  spacing: 2px;
+}
+
+.jc-clock { font-size: 17pt; font-weight: bold; }
+.jc-jalali { font-size: 10.5pt; font-weight: bold; }
+.jc-sub { font-size: 8.5pt; color: #9a9996; }
+
+.jc-icon-button {
+  padding: 3px;
+  border-radius: 99px;
+}
+.jc-icon-button:hover, .jc-icon-button:focus { background-color: rgba(128, 128, 128, 0.22); }
+
+.jc-nav { padding-top: 2px; padding-bottom: 0; spacing: 2px; }
+.jc-month-title { font-size: 10.5pt; font-weight: bold; }
+.jc-today-button {
+  padding: 1px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  font-size: 9.5pt;
+}
+.jc-today-button:hover, .jc-today-button:focus { background-color: rgba(128, 128, 128, 0.22); }
+
+.jc-weekday {
+  width: 36px;
+  text-align: center;
+  font-size: 8.5pt;
+  font-weight: bold;
+  color: #9a9996;
+  padding: 0;
+}
+
+.jc-grid { spacing: 0; }
+.jc-day {
+  width: 36px;
+  height: 22px;
+  border-radius: 10px;
+  font-size: 10pt;
+  border: 1px solid transparent;
+}
+.jc-day:hover, .jc-day:focus { background-color: rgba(128, 128, 128, 0.22); }
+.jc-day.jc-other-month { color: rgba(128, 128, 128, 0.75); }
+.jc-day.jc-has-events { font-weight: bold; }
+.jc-day.jc-selected { border-color: #3584e4; }
+.jc-day.jc-today { background-color: #3584e4; color: #ffffff; font-weight: bold; }
+.jc-day.jc-today:hover { background-color: #1c71d8; }
+
+.jc-red { color: #f66151; }
+.jc-day.jc-other-month.jc-red { color: rgba(246, 97, 81, 0.55); }
+
+.jc-events {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(128, 128, 128, 0.35);
+  spacing: 2px;
+  max-width: 270px;
+}
+.jc-events-title { font-weight: bold; font-size: 9.5pt; }
+.jc-event { font-size: 9pt; }
+.jc-source { font-size: 8.5pt; color: #9a9996; padding-top: 4px; }
+
+.jc-converter {
+  margin-top: 4px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.12);
+  spacing: 2px;
+}
+.jc-entry-row { spacing: 6px; }
+.jc-entry { min-width: 60px; text-align: center; }
+.jc-conv-result {
+  padding: 4px 6px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.jc-conv-result:hover, .jc-conv-result:focus { background-color: rgba(128, 128, 128, 0.22); }

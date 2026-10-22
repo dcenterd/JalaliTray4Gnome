@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.jalali-calendar" path="/org/gnome/shell/extensions/jalali-calendar/">
+
+    <key name="panel-position" type="s">
+      <choices>
+        <choice value="left"/>
+        <choice value="center"/>
+        <choice value="right"/>
+      </choices>
+      <default>'center'</default>
+      <summary>Top bar area for the date label</summary>
+    </key>
+    <key name="panel-index" type="i">
+      <range min="0" max="20"/>
+      <default>0</default>
+      <summary>Order inside that area (0 = first)</summary>
+    </key>
+    <key name="label-format" type="s">
+      <choices>
+        <choice value="day"/>
+        <choice value="day-month"/>
+        <choice value="day-month-year"/>
+        <choice value="weekday-full"/>
+        <choice value="numeric"/>
+      </choices>
+      <default>'day-month'</default>
+      <summary>Top bar label format</summary>
+    </key>
+    <key name="panel-padding" type="i">
+      <range min="0" max="60"/>
+      <default>8</default>
+      <summary>Space inside the top bar button, left and right (px)</summary>
+    </key>
+    <key name="panel-margin" type="i">
+      <range min="0" max="60"/>
+      <default>0</default>
+      <summary>Space outside the top bar button, left and right (px)</summary>
+    </key>
+    <key name="panel-min-width" type="i">
+      <range min="0" max="400"/>
+      <default>0</default>
+      <summary>Fixed width of the date label in px (0 = automatic)</summary>
+    </key>
+    <key name="show-clock" type="b">
+      <default>true</default>
+      <summary>Show the live clock in the popup</summary>
+    </key>
+    <key name="panel-color" type="s">
+      <choices>
+        <choice value="white"/>
+        <choice value="black"/>
+        <choice value="blue"/>
+      </choices>
+      <default>'white'</default>
+      <summary>Color of the date shown on the panel</summary>
+    </key>
+    <key name="highlight-holidays" type="b">
+      <default>true</default>
+      <summary>Show Fridays and holidays in red</summary>
+    </key>
+
+    <key name="language" type="s">
+      <choices>
+        <choice value="fa"/>
+        <choice value="en"/>
+      </choices>
+      <default>'fa'</default>
+      <summary>Interface language</summary>
+    </key>
+    <key name="show-gregorian" type="b">
+      <default>true</default>
+      <summary>Show the Gregorian date</summary>
+    </key>
+    <key name="show-hijri" type="b">
+      <default>true</default>
+      <summary>Show the Hijri (lunar) date</summary>
+    </key>
+    <key name="hijri-offset" type="i">
+      <range min="-2" max="2"/>
+      <default>0</default>
+      <summary>Hijri date adjustment in days</summary>
+    </key>
+
+    <key name="fetch-events" type="b">
+      <default>true</default>
+      <summary>Download events from time.ir</summary>
+    </key>
+    <key name="show-holidays" type="b">
+      <default>true</default>
+      <summary>Show official holidays</summary>
+    </key>
+    <key name="show-religious" type="b">
+      <default>true</default>
+      <summary>Show religious occasions</summary>
+    </key>
+    <key name="show-national" type="b">
+      <default>true</default>
+      <summary>Show national occasions</summary>
+    </key>
+    <key name="show-other" type="b">
+      <default>true</default>
+      <summary>Show international occasions</summary>
+    </key>
+
+    <key name="ntp-server" type="s">
+      <default>'pool.ntp.org'</default>
+      <summary>NTP server (host name or IP address, optional :port)</summary>
+    </key>
+    <key name="ntp-auto-sync" type="b">
+      <default>false</default>
+      <summary>Sync with the NTP server on start and every hour</summary>
+    </key>
+    <key name="ntp-sync-request" type="i">
+      <default>0</default>
+      <summary>Incremented by the preferences to request an immediate NTP sync</summary>
+    </key>
+    <key name="ntp-reset-request" type="i">
+      <default>0</default>
+      <summary>Incremented by the preferences to go back to the system clock</summary>
+    </key>
+  </schema>
+</schemalist>
