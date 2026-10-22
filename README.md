@@ -2,6 +2,8 @@
 
 A GNOME Shell extension that shows today's Jalali (Shamsi) date in the top bar. It is a port of [JalaliTray](https://github.com/avestura/JalaliTray) by [Avestura](https://github.com/avestura) from the Windows tray to GNOME, and all credit for the original idea and design goes to them.
 
+![Calendar popup](screenshots/popup.png)
+
 Click the date to open a popup with:
 - a live clock and today's Jalali, Gregorian and Hijri dates
 - a Saturday-first month grid, with Fridays and holidays in red and days with events in bold
