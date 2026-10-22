@@ -45,3 +45,6 @@ Logs: `journalctl -f -o cat /usr/bin/gnome-shell | grep -i jalali`
 | `i18n.js` | Persian/English strings and digits |
 
 The bundled Vazirmatn font is under the SIL Open Font License (`fonts/OFL.txt`).
+
+## License
+MIT. See [LICENSE](LICENSE). This project is based on [JalaliTray](https://github.com/avestura/JalaliTray) by Avestura (Aryan Ebrahimpour), which is also MIT-licensed, and both copyright notices are kept.
