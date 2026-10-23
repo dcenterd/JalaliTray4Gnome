@@ -39,6 +39,7 @@ function wrapLabel(label, rtl) {
     t.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
     t.ellipsize = Pango.EllipsizeMode.NONE;
     t.line_alignment = rtl ? Pango.Alignment.RIGHT : Pango.Alignment.LEFT;
+    label.set_text_direction(rtl ? Clutter.TextDirection.RTL : Clutter.TextDirection.LTR);
     return label;
 }
 
@@ -522,7 +523,9 @@ class JalaliIndicator extends PanelMenu.Button {
         }
         for (const e of list) {
             const label = wrapLabel(new St.Label({
-                text: `• ${e.title}${e.holiday ? ` (${t.holiday})` : ''}`,
+                // RLE..PDF forces a right-to-left paragraph so the bullet sits
+                // on the right and punctuation/Latin runs land in the right place.
+                text: `${rtl ? '\u202B' : ''}• ${e.title}${e.holiday ? ` (${t.holiday})` : ''}${rtl ? '\u202C' : ''}`,
                 style_class: e.holiday ? 'jc-event jc-red' : 'jc-event',
                 x_expand: true,
             }), rtl);
