@@ -422,7 +422,9 @@ class JalaliIndicator extends PanelMenu.Button {
         this._root.add_child(this._grid);
 
         // Events of the selected day.
-        this._eventsBox = vbox({style_class: 'jc-events', x_expand: true});
+        // max-width keeps long events wrapping; anchoring the capped box to the
+        // text-start edge makes Persian lines end flush with the popup's right edge.
+        this._eventsBox = vbox({style_class: 'jc-events', x_expand: true, x_align: this._align()});
         this._root.add_child(this._eventsBox);
 
         this._updateBox = vbox({x_expand: true});
