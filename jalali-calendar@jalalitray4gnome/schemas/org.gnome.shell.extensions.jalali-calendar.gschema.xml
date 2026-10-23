@@ -86,6 +86,10 @@
       <default>true</default>
       <summary>Download events from time.ir</summary>
     </key>
+    <key name="check-updates" type="b">
+      <default>true</default>
+      <summary>Check GitHub for a newer version</summary>
+    </key>
     <key name="show-holidays" type="b">
       <default>true</default>
       <summary>Show official holidays</summary>

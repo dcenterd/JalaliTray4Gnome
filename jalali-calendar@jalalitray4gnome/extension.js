@@ -18,9 +18,11 @@ import * as J from './jalali.js';
 import {strings, num, parseDigits, formatGregorian} from './i18n.js';
 import {EventStore} from './events.js';
 import {queryNtp} from './ntp.js';
+import {UpdateChecker, isNewer} from './update.js';
 
 const FRIDAY = 6;
 const NTP_RESYNC_SECONDS = 3600;
+const UPDATE_CHECK_SECONDS = 24 * 3600;
 const PANEL_COLORS = {white: '#ffffff', black: '#000000', blue: '#3584e4'};
 
 // St.BoxLayout got an `orientation` property in GNOME 48 and deprecated `vertical`.
@@ -414,9 +416,43 @@ class JalaliIndicator extends PanelMenu.Button {
         this._eventsBox = vbox({style_class: 'jc-events', x_expand: true});
         this._root.add_child(this._eventsBox);
 
+        this._updateBox = vbox({x_expand: true});
+        this._root.add_child(this._updateBox);
+
         this._renderGrid();
         this._renderEvents();
+        this._renderUpdate();
         this._updateClock();
+    }
+
+    /** Shows a link to the release page when the extension found a newer version. */
+    _renderUpdate() {
+        if (!this._updateBox)
+            return;
+        this._updateBox.destroy_all_children();
+        const update = this._ext.update;
+        if (!update || !this._settings.get_boolean('check-updates'))
+            return;
+        const btn = new St.Button({
+            label: this._t.updateAvailable.replace('%s', this._n(update.version)),
+            style_class: 'jc-update',
+            can_focus: true,
+            x_expand: true,
+        });
+        btn.connect('clicked', () => {
+            this.menu.close();
+            try {
+                Gio.AppInfo.launch_default_for_uri(update.url, null);
+            } catch (e) {
+                console.error(`jalali-calendar: could not open ${update.url}: ${e.message}`);
+            }
+        });
+        this._updateBox.add_child(btn);
+    }
+
+    refreshUpdate() {
+        if (!this._destroyed)
+            this._renderUpdate();
     }
 
     _iconButton(iconName, accessibleName, onClick) {
@@ -664,9 +700,35 @@ export default class JalaliCalendarExtension extends Extension {
         this.events = new EventStore();
         this.clockOffsetMs = 0; // local clock error measured by the last NTP sync
         this.ntp = {state: 'idle'};
+        this.update = null; // {version, url} when GitHub has a newer release
+        this._updates = new UpdateChecker();
         this._addIndicator();
+        this._startUpdateChecks();
         this._posIds = ['changed::panel-position', 'changed::panel-index', 'changed::ntp-auto-sync'].map(sig =>
             this._settings.connect(sig, () => this._addIndicator()));
+    }
+
+    _startUpdateChecks() {
+        this._checkUpdate();
+        this._updateTimerId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, UPDATE_CHECK_SECONDS, () => {
+            this._checkUpdate();
+            return GLib.SOURCE_CONTINUE;
+        });
+        this._updateSettingId = this._settings.connect('changed::check-updates', () => this._checkUpdate());
+    }
+
+    _checkUpdate() {
+        if (!this._settings.get_boolean('check-updates')) {
+            this.update = null;
+            this._indicator?.refreshUpdate();
+            return;
+        }
+        this._updates.latest().then(latest => {
+            this.update = isNewer(latest.version, this.metadata['version-name']) ? latest : null;
+        }).catch(e => {
+            if (this._updates)
+                console.debug(`[jalali-calendar] update check failed: ${e.message}`);
+        }).finally(() => this._indicator?.refreshUpdate());
     }
 
     _addIndicator() {
@@ -679,6 +741,16 @@ export default class JalaliCalendarExtension extends Extension {
     }
 
     disable() {
+        if (this._updateTimerId) {
+            GLib.source_remove(this._updateTimerId);
+            this._updateTimerId = 0;
+        }
+        if (this._updateSettingId) {
+            this._settings.disconnect(this._updateSettingId);
+            this._updateSettingId = 0;
+        }
+        this._updates?.destroy();
+        this._updates = null;
         for (const id of this._posIds ?? [])
             this._settings.disconnect(id);
         this._posIds = null;

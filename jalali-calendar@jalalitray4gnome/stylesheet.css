@@ -73,6 +73,17 @@
 .jc-event { font-size: 9pt; }
 .jc-source { font-size: 8.5pt; color: #9a9996; padding-top: 4px; }
 
+.jc-update {
+  margin-top: 4px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 8.5pt;
+  color: #ffffff;
+  background-color: #3584e4;
+  text-align: center;
+}
+.jc-update:hover, .jc-update:focus { background-color: #1c71d8; }
+
 .jc-converter {
   margin-top: 4px;
   padding: 5px;

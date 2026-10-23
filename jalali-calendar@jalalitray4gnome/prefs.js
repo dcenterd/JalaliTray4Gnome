@@ -36,6 +36,9 @@ const TEXT = {
         ntpReset: 'بازگشت به ساعت سیستم',
         ntpAuto: 'همگام‌سازی خودکار',
         ntpAutoSub: 'هنگام شروع و سپس هر ساعت. ساعت سیستم تغییر نمی‌کند؛ فقط ساعت و تاریخ این افزونه اصلاح می‌شود',
+        updates: 'به‌روزرسانی',
+        checkUpdates: 'بررسی نسخه جدید',
+        checkUpdatesSub: 'روزانه از GitHub پرسیده می‌شود؛ چیزی نصب نمی‌شود و فقط پیامی در پنجره نمایش داده می‌شود',
         events: 'رویدادها',
         fetch: 'دریافت رویدادها از time.ir',
         fetchSub: 'ماهانه دریافت و در ‎~/.cache/jalali-calendar‎ ذخیره می‌شود',
@@ -76,6 +79,9 @@ const TEXT = {
         ntpReset: 'Use system clock',
         ntpAuto: 'Sync automatically',
         ntpAutoSub: 'On start and then every hour. The system clock is not changed; only this extension\'s clock and date are corrected',
+        updates: 'Updates',
+        checkUpdates: 'Check for a new version',
+        checkUpdatesSub: 'Asks GitHub once a day; nothing is installed, a notice is just shown in the popup',
         events: 'Events',
         fetch: 'Download events from time.ir',
         fetchSub: 'Fetched monthly and cached in ~/.cache/jalali-calendar',
@@ -163,5 +169,9 @@ export default class JalaliCalendarPreferences extends ExtensionPreferences {
         events.add(toggle(t.national, 'show-national'));
         events.add(toggle(t.other, 'show-other'));
         page.add(events);
+
+        const updates = new Adw.PreferencesGroup({title: t.updates});
+        updates.add(toggle(t.checkUpdates, 'check-updates', t.checkUpdatesSub));
+        page.add(updates);
     }
 }
