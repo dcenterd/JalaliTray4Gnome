@@ -35,12 +35,12 @@ It can run alongside `shamsi-calendar@gnome.scr.ir`. Disable that one if you wan
 
 Uninstall with `./install.sh uninstall`.
 
+Logs: `journalctl -f -o cat /usr/bin/gnome-shell | grep -i jalali`
+
 ## Updating
 Once a day the extension asks the GitHub releases API for the latest version number and compares it with the installed one. If a newer release exists, the popup shows a button that opens its release page. Nothing is downloaded or installed automatically, and you can turn the check off in the settings (*Updates*).
 
 To update, download the zip from the release page and run `gnome-extensions install --force jalali-calendar@jalalitray4gnome.shell-extension.zip`, or pull the repository and run `./install.sh` again. Then log out and back in (Wayland) or press Alt+F2, `r`, Enter (X11). Versions before 1.2.0 have no update check, so they need this manual step once.
-
-Logs: `journalctl -f -o cat /usr/bin/gnome-shell | grep -i jalali`
 
 ## Files
 | File | Purpose |
