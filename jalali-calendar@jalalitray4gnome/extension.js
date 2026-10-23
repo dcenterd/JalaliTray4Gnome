@@ -40,7 +40,16 @@ function wrapLabel(label, rtl) {
     t.line_wrap = true;
     t.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
     t.ellipsize = Pango.EllipsizeMode.NONE;
-    t.line_alignment = rtl ? Pango.Alignment.RIGHT : Pango.Alignment.LEFT;
+    // With auto-direction on, Pango mirrors LEFT/RIGHT inside an RTL paragraph
+    // (LEFT = start of line); with it off they are absolute. Ask the layout
+    // rather than assume, so the lines hug the right edge in Persian either way.
+    const mirrored = t.get_layout().get_auto_dir();
+    t.line_alignment = (rtl && !mirrored) ? Pango.Alignment.RIGHT : Pango.Alignment.LEFT;
+    // Let the text span the whole label, otherwise it is as narrow as its
+    // longest line and the alignment above has no room to take effect.
+    t.x_expand = true;
+    t.x_align = Clutter.ActorAlign.FILL;
+    label.x_align = Clutter.ActorAlign.FILL;
     label.set_text_direction(rtl ? Clutter.TextDirection.RTL : Clutter.TextDirection.LTR);
     return label;
 }
