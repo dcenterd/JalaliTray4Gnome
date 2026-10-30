@@ -71,6 +71,7 @@
 }
 .jc-events-title { font-weight: bold; font-size: 9.5pt; }
 .jc-event { font-size: 9pt; }
+.jc-rtl .jc-event { text-align: right; }
 .jc-source { font-size: 8.5pt; color: #9a9996; padding-top: 4px; }
 
 .jc-update {
