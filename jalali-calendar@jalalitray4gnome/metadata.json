@@ -5,6 +5,6 @@
   "shell-version": ["45", "46", "47", "48"],
   "settings-schema": "org.gnome.shell.extensions.jalali-calendar",
   "url": "https://github.com/avestura/JalaliTray",
-  "version": 6,
-  "version-name": "1.2.2"
+  "version": 7,
+  "version-name": "1.2.3"
 }
