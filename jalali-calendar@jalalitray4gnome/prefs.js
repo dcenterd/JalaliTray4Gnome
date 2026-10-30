@@ -39,6 +39,7 @@ const TEXT = {
         updates: 'به‌روزرسانی',
         checkUpdates: 'بررسی نسخه جدید',
         checkUpdatesSub: 'روزانه از GitHub پرسیده می‌شود؛ چیزی نصب نمی‌شود و فقط پیامی در پنجره نمایش داده می‌شود',
+        version: 'نسخه',
         events: 'رویدادها',
         fetch: 'دریافت رویدادها از time.ir',
         fetchSub: 'ماهانه دریافت و در ‎~/.cache/jalali-calendar‎ ذخیره می‌شود',
@@ -82,6 +83,7 @@ const TEXT = {
         updates: 'Updates',
         checkUpdates: 'Check for a new version',
         checkUpdatesSub: 'Asks GitHub once a day; nothing is installed, a notice is just shown in the popup',
+        version: 'Version',
         events: 'Events',
         fetch: 'Download events from time.ir',
         fetchSub: 'Fetched monthly and cached in ~/.cache/jalali-calendar',
@@ -172,6 +174,9 @@ export default class JalaliCalendarPreferences extends ExtensionPreferences {
 
         const updates = new Adw.PreferencesGroup({title: t.updates});
         updates.add(toggle(t.checkUpdates, 'check-updates', t.checkUpdatesSub));
+        const version = new Adw.ActionRow({title: t.version});
+        version.add_suffix(new Gtk.Label({label: this.metadata['version-name'], css_classes: ['dim-label']}));
+        updates.add(version);
         page.add(updates);
     }
 }
